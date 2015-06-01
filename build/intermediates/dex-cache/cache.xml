@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/summers/Projects/Meme-olist/app/build/intermediates/exploded-aar/org.jboss.aerogear/aerogear-android-core/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e4ab93fae46a0a634f42e3c8168988905c07085c">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/classes-9ec52586ec23bd22f6fcdcd72fe467cdca376712.jar" />
+    </item>
+    <item
+        jar="/home/summers/Projects/Meme-olist/app/build/intermediates/exploded-aar/org.jboss.aerogear/aerogear-android-store/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="71a971dc4cc8a67b877af976ac6e7eb683b028fd">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/classes-b368483f6ca3368f72c30c2d1df41b79a5016051.jar" />
+    </item>
+    <item
+        jar="/home/summers/Projects/Meme-olist/app/build/intermediates/exploded-aar/org.jboss.aerogear/aerogear-android-pipe/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4e6fadf9688b9ba48a9dd4d48d7d4c434d4fa7f2">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/classes-e81b13a9a788acac2f18caf3e735af79eb59523c.jar" />
+    </item>
+    <item
+        jar="/home/summers/Projects/Meme-olist/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/classes-3186788c7a95df4418b661f529767970cdafb64d.jar" />
+    </item>
+    <item
+        jar="/home/summers/.gradle/caches/modules-2/files-2.1/com.madgag/scprov-jdk15on/1.47.0.3/a1ff8a74a7013c4ada7e4d20d335b302d147ddd1/scprov-jdk15on-1.47.0.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a1ff8a74a7013c4ada7e4d20d335b302d147ddd1">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/scprov-jdk15on-1.47.0.3-886ea4ff485b463fc82b172cd3c569edbecd8f7e.jar" />
+    </item>
+    <item
+        jar="/home/summers/Projects/Meme-olist/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/classes-ec3e868090122e89cdcb35872d96db39675315e2.jar" />
+    </item>
+    <item
+        jar="/home/summers/Projects/Meme-olist/app/build/intermediates/exploded-aar/org.jboss.aerogear/aerogear-android-security/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="cfe26ed67cc1364b764ea20642227d06fbe7f233">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/classes-1c9c0f64c2dac13c4c299e09c36f022f210255e0.jar" />
+    </item>
+    <item
+        jar="/home/summers/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.2.2/1f96456ca233dec780aa224bff076d8e8bca3908/gson-2.2.2.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1f96456ca233dec780aa224bff076d8e8bca3908">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/gson-2.2.2-d49da1562166537dfc21cb73c021a2635f6cc172.jar" />
+    </item>
+    <item
+        jar="/home/summers/Projects/Meme-olist/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-e1fc25335b00b9871fa2e5b9f32e5a6e9c60f661.jar" />
+    </item>
+    <item
+        jar="/home/summers/Projects/Meme-olist/app/build/intermediates/exploded-aar/org.jboss.aerogear/aerogear-android-authz/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="3994112ffebfdaafb59a1b7b64312ea2d2f33fc7">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/classes-5fee2484636c4f0acbef6d90ae5e6725d6b49d6b.jar" />
+    </item>
+    <item
+        jar="/home/summers/.gradle/caches/modules-2/files-2.1/org.jboss.aerogear/aerogear-crypto/0.1.5/300b50fc12a6213a2d20ee6849201477510935bc/aerogear-crypto-0.1.5-android.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="300b50fc12a6213a2d20ee6849201477510935bc">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/aerogear-crypto-0.1.5-android-c8f1100519b31f534b4ffc1470915c255f7141a4.jar" />
+    </item>
+    <item
+        jar="/home/summers/.gradle/caches/modules-2/files-2.1/com.madgag/sc-light-jdk15on/1.47.0.3/ee5043d8e50e46b0daca4e798f52d7532c27b0c4/sc-light-jdk15on-1.47.0.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ee5043d8e50e46b0daca4e798f52d7532c27b0c4">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/sc-light-jdk15on-1.47.0.3-1df9094708d90c2c0accf89990153d96ba96b9ef.jar" />
+    </item>
+    <item
+        jar="/home/summers/Programs/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/home/summers/Projects/Meme-olist/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-47be2239912cbc468b121fa0ebe4102b7db9e672.jar" />
+    </item>
+
+</items>

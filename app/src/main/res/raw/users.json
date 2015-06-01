@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "username": "qmx@redhat.com",
+    "Display Name": "Douglas Campos"
+  },
+  {
+    "id": 2,
+    "username": "passos@redhat.com",
+    "Display Name": "Daniel Passos"
+  },
+  {
+    "id": 3,
+    "username": "abstractj@redhat.com",
+    "Display Name": "Bruno OhIdon'tKNowHowToSpellHisLastName"
+  },
+  {
+    "id": 4,
+    "username": "lolquits@redhat.com",
+    "Display Name": "LOL Quist"
+  }
+]
