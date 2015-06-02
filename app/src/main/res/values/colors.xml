@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="rh_primary">#CC0000</color>
+    <color name="rh_primary_dark">#781f1c</color>
+    <color name="rh_accent">#564979</color>
+
+</resources>

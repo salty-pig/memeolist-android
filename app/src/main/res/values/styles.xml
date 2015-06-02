@@ -2,7 +2,22 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
+
+        <!-- customize the color palette -->
+        <item name="colorPrimary">@color/rh_primary</item>
+        <item name="colorPrimaryDark">@color/rh_primary_dark</item>
+        <item name="colorAccent">@color/rh_accent</item>
+        <item name="android:textColor">@color/rh_accent</item>
+        <!-- Toolbar styles -->
+        <item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>
     </style>
+    <style name="ToolbarText" parent="AppTheme">
+        <item name="android:textColorPrimary">#FFF</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>

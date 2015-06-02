@@ -13,7 +13,7 @@ public class Memeolist extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_memeolist);
+        setContentView(R.layout.main);
 
     }
 

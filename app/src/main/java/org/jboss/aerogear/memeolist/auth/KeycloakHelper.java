@@ -80,7 +80,7 @@ public class KeycloakHelper {
 
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException(e);
+            callback.onFailure(e);
         }
     }
 

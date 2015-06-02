@@ -9,4 +9,6 @@
 
     <string name="action_settings">Settings</string>
     <string name="title_activity_memeolist">Memeolist</string>
+    <string name="sample_date">Dec 18, 1983</string>
+    <string name="sample_number">1024</string>
 </resources>
