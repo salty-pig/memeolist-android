@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application>
+    <application android:theme="@style/AppTheme">
         <activity
             android:name=".Memeolist"
             android:label="@string/title_activity_memeolist"
@@ -24,6 +24,11 @@
             android:enabled="true"
             android:exported="true" >
         </provider>
+
+        <activity
+            android:name=".MainUIActivity"
+            android:label="@string/title_activity_main_ui" >
+        </activity>
     </application>
 
 </manifest>
