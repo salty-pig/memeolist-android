@@ -37,19 +37,20 @@ public class Memeolist extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (!KeycloakHelper.isConnected()) {
-            KeycloakHelper.connect(this, new Callback() {
-                @Override
-                public void onSuccess(Object o) {
-                    tabs.setupWithViewPager(pager);
+        tabs.setupWithViewPager(pager);
 
-                }
-
-                @Override
-                public void onFailure(Exception e) {
-
-                }
-            });
-        }
+//        if (!KeycloakHelper.isConnected()) {
+//            KeycloakHelper.connect(this, new Callback() {
+//                @Override
+//                public void onSuccess(Object o) {
+//
+//                }
+//
+//                @Override
+//                public void onFailure(Exception e) {
+//
+//                }
+//            });
+//        }
     }
 }
