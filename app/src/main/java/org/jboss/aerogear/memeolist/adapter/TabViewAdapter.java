@@ -8,6 +8,7 @@ import android.view.View;
 
 import org.jboss.aerogear.memeolist.R;
 import org.jboss.aerogear.memeolist.ui.AccountFragment;
+import org.jboss.aerogear.memeolist.ui.FavoritesFragment;
 import org.jboss.aerogear.memeolist.ui.FollowingFragment;
 import org.jboss.aerogear.memeolist.ui.MemeListFragment;
 
@@ -24,7 +25,7 @@ public class TabViewAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 4;
     }
 
     @Override
@@ -40,6 +41,8 @@ public class TabViewAdapter extends FragmentStatePagerAdapter {
             case 1:
                 return new FollowingFragment();
             case 2:
+                return new FavoritesFragment();
+            case 3:
                 return new AccountFragment();
             default:
                 return null;

@@ -15,10 +15,12 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.squareup.picasso.Picasso;
 
 import org.jboss.aerogear.memeolist.R;
 import org.jboss.aerogear.memeolist.model.Meme;
 import org.jboss.aerogear.memeolist.utils.GsonUtils;
+import org.jboss.aerogear.memeolist.utils.UIUtils;
 
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -34,9 +36,13 @@ import java.util.List;
  */
 public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
+    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+
     private final List<Meme> memes;
+    private final Context appContext;
 
     public MemeAdapter(Context context) {
+        this.appContext = context.getApplicationContext();
         memes = new ArrayList<>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
         JsonParser parser = new JsonParser();
@@ -80,15 +86,19 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Meme meme = memes.get(position);
-        holder.favoriteCount.setText("1024");
-        holder.feedbackCount.setText(position + "");
+        holder.favoriteCount.setText("");
+        holder.feedbackCount.setText("");
+
         try {
-            holder.memePhoto.setImageURI(Uri.parse(meme.getFileUrl().toString()));
+            Picasso.with(appContext)
+                    .load(meme.getFileUrl().toString())
+                    .into(holder.memePhoto);
+
         } catch (Exception e) {
             throw new RuntimeException((e));
         }
-        holder.postedDate.setText(meme.getPosted().toString());
-
+        holder.postedDate.setText(FORMAT.format(meme.getPosted()));
+        UIUtils.setTextWithUnderline(holder.creator,"secondsun");
     }
 
     @Override
@@ -101,6 +111,7 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
         final TextView postedDate;
         final ImageView memePhoto;
+        final TextView creator;
         final TextView feedbackCount;
         final TextView favoriteCount;
 
@@ -111,8 +122,12 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
             memePhoto = (ImageView) view.findViewById(R.id.meme_photo);
             feedbackCount = (TextView) view.findViewById(R.id.feedback_count);
             favoriteCount = (TextView) view.findViewById(R.id.favorite_count);
+            creator = (TextView) view.findViewById(R.id.creator);
         }
 
 
     }
+
+
+
 }

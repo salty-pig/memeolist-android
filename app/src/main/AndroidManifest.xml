@@ -25,10 +25,6 @@
             android:exported="true" >
         </provider>
 
-        <activity
-            android:name=".MainUIActivity"
-            android:label="@string/title_activity_main_ui" >
-        </activity>
     </application>
 
 </manifest>

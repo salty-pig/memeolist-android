@@ -4,6 +4,7 @@
     <string-array name="titles">
         <item >World</item>
         <item>Following</item>
+        <item>Favorites</item>
         <item>Account</item>
     </string-array>
 
