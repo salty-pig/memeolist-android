@@ -47,7 +47,7 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
     public MemeAdapter(Context context) {
         this.appContext = context.getApplicationContext();
-        memes = new ArrayList<>();
+        memes = new ArrayList<Meme>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
         JsonParser parser = new JsonParser();
         InputStreamReader reader = new InputStreamReader(context.getResources().openRawResource(R.raw.meme));

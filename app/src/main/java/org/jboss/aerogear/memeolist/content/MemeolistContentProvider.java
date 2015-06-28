@@ -44,11 +44,11 @@ public class MemeolistContentProvider extends ContentProvider {
     public boolean onCreate() {
         resolver = getContext().getContentResolver();
         context = getContext();
-
-        postStore = new SQLStore<>(Post.class, getContext(), GsonUtils.builder(), new DefaultIdGenerator());
-        postStore.open(new CountDownCallback<SQLStore<Post>>(createdLatch));
-        userStore = new SQLStore<>(RedHatUser.class, getContext(), GsonUtils.builder(), new DefaultIdGenerator());
-        userStore.open(new CountDownCallback<SQLStore<RedHatUser>>(createdLatch));
+//
+//        postStore = new SQLStore<>(Post.class, getContext(), GsonUtils.builder(), new DefaultIdGenerator());
+//        postStore.open(new CountDownCallback<SQLStore<Post>>(createdLatch));
+//        userStore = new SQLStore<>(RedHatUser.class, getContext(), GsonUtils.builder(), new DefaultIdGenerator());
+//        userStore.open(new CountDownCallback<SQLStore<RedHatUser>>(createdLatch));
         return true;
     }
 
