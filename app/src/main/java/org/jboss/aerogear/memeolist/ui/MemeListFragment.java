@@ -60,14 +60,6 @@ public class MemeListFragment extends Fragment implements CardOnClickHandler {
         Intent intent = new Intent(getActivity(), MemeDetail.class);
 
         intent.putExtra(MemeDetail.EXTRA_MEME, meme);
-//
-//        Pair< View, String > p1 = Pair.create((View)view.cardView, "details");
-////        Pair< View, String > p2 = Pair.create((View)view.memePhoto, "details");
-////        Pair< View, String > p3 = Pair.create((View)view.postedDate, "details");
-//
-//        ActivityOptionsCompat options =ActivityOptionsCompat.
-//                makeSceneTransitionAnimation(getActivity(), p1);
-
 
         getActivity().startActivity(intent);
     }
