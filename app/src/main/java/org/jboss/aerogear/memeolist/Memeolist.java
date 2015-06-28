@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Window;
 import android.widget.Toast;
 
 import org.jboss.aerogear.android.core.Callback;
@@ -20,6 +21,7 @@ public class Memeolist extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

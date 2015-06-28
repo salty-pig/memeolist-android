@@ -10,9 +10,12 @@
         <item name="android:textColor">@color/rh_accent</item>
         <!-- Toolbar styles -->
         <item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>
+
+
     </style>
     <style name="ToolbarText" parent="AppTheme">
         <item name="android:textColorPrimary">#FFF</item>
+        <item name="android:textColorPrimaryInverse">#FFF</item>
         <item name="android:textColor">#FFF</item>
         <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">sans-serif-thin</item>
@@ -29,5 +32,5 @@
         <item name="android:textSize">14sp</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
-
 </resources>
+

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.jboss.aerogear.memeolist" >
+    package="org.jboss.aerogear.memeolist">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application android:theme="@style/AppTheme">
-        <activity
-            android:name=".Memeolist"
-            android:label="@string/title_activity_memeolist"
-            android:theme="@style/AppTheme" >
+    <application
+        android:label="@string/title_activity_memeolist"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".Memeolist">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -16,14 +16,18 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".MemeDetail"
+            android:label="@string/title_activity_memeolist"
+            android:theme="@style/AppTheme" />
+
+
         <service android:name="org.jboss.aerogear.android.authorization.oauth2.OAuth2AuthzService" />
 
         <provider
             android:name=".content.MemeolistContentProvider"
             android:authorities="org.jboss.aerogear.memeolist"
-            android:enabled="true"
-            android:exported="true" >
-        </provider>
+            android:enabled="true"></provider>
 
     </application>
 

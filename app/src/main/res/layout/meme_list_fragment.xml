@@ -16,5 +16,6 @@
     android:stretchMode="columnWidth"
     android:verticalSpacing="1dp"
     tools:ignore="Overdraw"
+    tools:listitem="@layout/meme_card"
 
-    />
+    tools:context=".Memeolist" />
