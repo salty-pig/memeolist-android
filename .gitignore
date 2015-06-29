@@ -5,6 +5,8 @@ bin/
 *.apk
 *.ap_
 build/
+.gradle/
+
 # files for the dex VM
 *.dex
 
