@@ -24,8 +24,8 @@ public class FollowingFragment extends Fragment implements CardOnClickHandler {
     private View view;
     private MemeAdapter memeAdapter;
 
-    public static MemeListFragment newInstance() {
-        return new MemeListFragment();
+    public static FollowingFragment newInstance() {
+        return new FollowingFragment();
     }
 
     @Nullable

@@ -54,8 +54,7 @@
     <android.support.design.widget.FloatingActionButton
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        app:layout_anchor="@id/appbar"
-        app:layout_anchorGravity="bottom|right|end"
+        android:layout_gravity="end|bottom"
         android:src="@drawable/ic_discuss"
         android:layout_margin="24dp"
         android:clickable="true"/>

@@ -3,6 +3,7 @@ package org.jboss.aerogear.memeolist.adapter;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.View;
 
@@ -15,7 +16,7 @@ import org.jboss.aerogear.memeolist.ui.MemeListFragment;
 /**
  * Created by summers on 6/7/15.
  */
-public class TabViewAdapter extends FragmentStatePagerAdapter {
+public class TabViewAdapter extends FragmentPagerAdapter {
     private final String[] titles;
 
     public TabViewAdapter(Context applicationContext, FragmentManager supportFragmentManager) {
@@ -50,8 +51,4 @@ public class TabViewAdapter extends FragmentStatePagerAdapter {
 
     }
 
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return true;
-    }
 }
