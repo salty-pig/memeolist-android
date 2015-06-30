@@ -33,7 +33,7 @@ public class AccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.account_fragment, null);
-        avatar = (ImageView) view.findViewById(R.id.image);
+        avatar = (ImageView) view.findViewById(R.id.avatar);
         avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
