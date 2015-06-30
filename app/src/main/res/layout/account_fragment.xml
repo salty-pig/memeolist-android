@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    style="@style/AppTheme"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_margin="12dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/meme_sample"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/screen_name"
+        android:layout_alignTop="@+id/avatar"
+        android:layout_toRightOf="@+id/avatar"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:text="ScreenName"
+        style="@style/MemeCardHeaderText" />
+
+    <TextView
+        style="@style/LinkText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email_address"
+        android:text="Email@email.com"
+
+        android:layout_below="@+id/screen_name"
+        android:layout_alignLeft="@+id/screen_name"
+        android:layout_alignStart="@+id/screen_name"
+        android:layout_alignRight="@+id/screen_name"
+        android:layout_alignEnd="@+id/screen_name" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/MemeCardHeaderText"
+        android:text="Bio"
+        android:id="@+id/bio_header"
+        android:layout_below="@+id/avatar"
+        android:layout_alignLeft="@+id/avatar"
+        android:layout_alignStart="@+id/avatar" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+
+
+        android:layout_alignBottom="@+id/bio_header"
+        android:layout_marginLeft="5sp"
+        android:layout_marginRight="5sp"
+        android:background="@color/rh_primary"
+        android:id="@+id/view" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/ipsum"
+        android:id="@+id/bio_text"
+        android:layout_below="@+id/view"
+        android:layout_alignLeft="@+id/view"
+        android:layout_alignStart="@+id/view"
+        android:layout_alignRight="@+id/view"
+        android:layout_alignEnd="@+id/view" />
+
+
+</RelativeLayout>

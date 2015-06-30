@@ -23,6 +23,7 @@ import org.jboss.aerogear.memeolist.MemeDetail;
 import org.jboss.aerogear.memeolist.R;
 import org.jboss.aerogear.memeolist.model.Meme;
 import org.jboss.aerogear.memeolist.utils.GsonUtils;
+import org.jboss.aerogear.memeolist.utils.MemeUtils;
 import org.jboss.aerogear.memeolist.utils.UIUtils;
 
 import java.io.InputStreamReader;
@@ -40,44 +41,13 @@ import java.util.List;
 public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-
     private final List<Meme> memes;
     private final Context appContext;
     private CardOnClickHandler cardOnClickHandler;
 
     public MemeAdapter(Context context) {
         this.appContext = context.getApplicationContext();
-        memes = new ArrayList<Meme>();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-        JsonParser parser = new JsonParser();
-        InputStreamReader reader = new InputStreamReader(context.getResources().openRawResource(R.raw.meme));
-        JsonElement json = parser.parse(reader);
-        JsonArray memesArray = json.getAsJsonObject().get("memes").getAsJsonArray();
-        for (int i = 0; i < memesArray.size(); i++) {
-            JsonObject meme = memesArray.get(i).getAsJsonObject();
-            long memeId = memes.size();
-            String posted = meme.get("posted").getAsString();
-            String fileUrl = meme.get("fileUrl").getAsString();
-            String comment = meme.get("comment").getAsString();
-            JsonObject owner = meme.get("owner").getAsJsonObject();
-            long ownerId = owner.get("id").getAsLong();
-            Meme memeObject = new Meme();
-            memeObject.setComment(comment);
-            try {
-                memeObject.setFileUrl(new URL(fileUrl));
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            }
-            memeObject.setId(memeId);
-            memeObject.setOwnerId(ownerId);
-            try {
-                memeObject.setPosted(format.parse(posted));
-            } catch (ParseException e) {
-                throw new RuntimeException(e);
-            }
-            memes.add(memeObject);
-
-        }
+        memes = MemeUtils.getMemes(appContext);
     }
 
     @Override

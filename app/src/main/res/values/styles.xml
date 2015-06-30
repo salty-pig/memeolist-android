@@ -7,6 +7,7 @@
         <item name="colorPrimary">@color/rh_primary</item>
         <item name="colorPrimaryDark">@color/rh_primary_dark</item>
         <item name="colorAccent">@color/rh_accent</item>
+        <item name="android:background">#FFF</item>
         <item name="android:textColor">@color/rh_accent</item>
         <!-- Toolbar styles -->
         <item name="toolbarStyle">@style/Widget.AppCompat.Toolbar</item>

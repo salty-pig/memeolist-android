@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.View;
 
+import org.jboss.aerogear.memeolist.Memeolist;
 import org.jboss.aerogear.memeolist.R;
 import org.jboss.aerogear.memeolist.ui.AccountFragment;
 import org.jboss.aerogear.memeolist.ui.FavoritesFragment;
@@ -19,9 +20,9 @@ import org.jboss.aerogear.memeolist.ui.MemeListFragment;
 public class TabViewAdapter extends FragmentPagerAdapter {
     private final String[] titles;
 
-    public TabViewAdapter(Context applicationContext, FragmentManager supportFragmentManager) {
+    public TabViewAdapter(Memeolist memeolist, FragmentManager supportFragmentManager) {
         super(supportFragmentManager);
-        titles = applicationContext.getResources().getStringArray(R.array.titles);
+        titles = memeolist.getResources().getStringArray(R.array.titles);
     }
 
     @Override
