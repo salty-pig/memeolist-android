@@ -8,14 +8,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Pair;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 
+import org.jboss.aerogear.android.authorization.AuthorizationManager;
+import org.jboss.aerogear.android.pipe.module.ModuleFields;
 import org.jboss.aerogear.memeolist.adapter.CommentAdapter;
-import org.jboss.aerogear.memeolist.model.Meme;
+import org.jboss.aerogear.memeolist.content.vo.Post;
+
+import java.io.IOException;
+
 
 /**
  * Created by summers on 6/27/15.
@@ -23,10 +33,11 @@ import org.jboss.aerogear.memeolist.model.Meme;
 public class MemeDetail extends AppCompatActivity {
 
     public static final String EXTRA_MEME = "MemeDetails.memeId";
-    private Meme meme;
+    private Post post;
     private ImageView memeImage;
     private RecyclerView commentsList;
     private AlertDialog dialog;
+    private Picasso picasso;
 
 
     @Override
@@ -36,10 +47,33 @@ public class MemeDetail extends AppCompatActivity {
         loadToolbar();
 
         memeImage = (ImageView) findViewById(R.id.meme_photo);
-        meme = getIntent().getParcelableExtra(EXTRA_MEME);
+        post = getIntent().getParcelableExtra(EXTRA_MEME);
+        setupPicasso();
         loadMeme();
         loadCommentsList();
         setupFAB();
+    }
+
+    private void setupPicasso() {
+        OkHttpClient picassoClient = new OkHttpClient();
+
+        picassoClient.interceptors().add(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                ModuleFields fields = AuthorizationManager.getModule("KeyCloakAuthz").loadModule(null, null, null);
+                Pair<String, String> header = fields.getHeaders().get(0);
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader(header.first, header.second)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        });
+
+        picasso = new Picasso.Builder(this).downloader(new OkHttpDownloader(picassoClient)).build();
+
+        picasso.setIndicatorsEnabled(true);
+        picasso.setLoggingEnabled(true);
+
     }
 
     private void setupFAB() {
@@ -97,8 +131,8 @@ public class MemeDetail extends AppCompatActivity {
     }
 
     private void loadMeme() {
-        Picasso.with(this)
-                .load(meme.getFileUrl().toString())
+        picasso
+                .load(post.getFileUrl().toString())
                 .noFade()
                 .into(memeImage);
     }

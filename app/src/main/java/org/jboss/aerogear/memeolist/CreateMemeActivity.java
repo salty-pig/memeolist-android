@@ -10,7 +10,8 @@ import android.support.v7.widget.RecyclerView;
 import org.jboss.aerogear.memeolist.adapter.CardOnClickHandler;
 import org.jboss.aerogear.memeolist.adapter.ImagesAdapter;
 import org.jboss.aerogear.memeolist.adapter.MemeAdapter;
-import org.jboss.aerogear.memeolist.model.Meme;
+import org.jboss.aerogear.memeolist.content.vo.Post;
+
 
 public class CreateMemeActivity extends AppCompatActivity implements CardOnClickHandler {
 
@@ -22,11 +23,6 @@ public class CreateMemeActivity extends AppCompatActivity implements CardOnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_meme);
-
-        images = (RecyclerView) findViewById(R.id.images);
-        images.setLayoutManager(new GridLayoutManager(this, 2));
-        adapter = new ImagesAdapter(this.getApplicationContext());
-        images.setAdapter(adapter);
     }
 
     @Override
@@ -47,7 +43,7 @@ public class CreateMemeActivity extends AppCompatActivity implements CardOnClick
     }
 
     @Override
-    public void onCardClick(final Meme meme, MemeAdapter.ViewHolder ignore) {
+    public void onCardClick(final Post post, MemeAdapter.ViewHolder ignore) {
          dialog = new AlertDialog.Builder(this)
                 .setTitle("Set Caption")
 

@@ -14,7 +14,8 @@ import org.jboss.aerogear.memeolist.MemeDetail;
 import org.jboss.aerogear.memeolist.R;
 import org.jboss.aerogear.memeolist.adapter.CardOnClickHandler;
 import org.jboss.aerogear.memeolist.adapter.MemeAdapter;
-import org.jboss.aerogear.memeolist.model.Meme;
+import org.jboss.aerogear.memeolist.content.vo.Post;
+
 
 /**
  * Created by summers on 6/22/15.
@@ -53,7 +54,7 @@ public class FavoritesFragment extends Fragment implements CardOnClickHandler {
     }
 
     @Override
-    public void onCardClick(Meme meme, MemeAdapter.ViewHolder view) {
+    public void onCardClick(Post meme, MemeAdapter.ViewHolder view) {
         Intent intent = new Intent(getActivity(), MemeDetail.class);
 
         intent.putExtra(MemeDetail.EXTRA_MEME, meme);

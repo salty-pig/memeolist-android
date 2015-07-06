@@ -5,6 +5,9 @@
  */
 package org.jboss.aerogear.memeolist.content.vo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import org.jboss.aerogear.android.core.RecordId;
 
 import java.io.Serializable;
@@ -14,10 +17,32 @@ import java.util.Date;
  * summers
  */
 
-public class Post implements Serializable {
+public class Post implements Parcelable {
 
     @RecordId
     private Long id;
+
+    protected Post(Parcel in) {
+        fileUrl = in.readString();
+        comment = in.readString();
+        posted = new Date(in.readLong());
+        owner = new RedHatUser();
+        owner.setDisplayName(in.readString());
+        owner.setId(in.readLong());
+        owner.setUsername(in.readString());
+    }
+
+    public static final Creator<Post> CREATOR = new Creator<Post>() {
+        @Override
+        public Post createFromParcel(Parcel in) {
+            return new Post(in);
+        }
+
+        @Override
+        public Post[] newArray(int size) {
+            return new Post[size];
+        }
+    };
 
     public Long getId() {
         return id;
@@ -68,5 +93,19 @@ public class Post implements Serializable {
     }
 
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(fileUrl);
+        dest.writeString(comment);
+        dest.writeLong(posted.getTime());
+        dest.writeString(owner.getDisplayName());
+        dest.writeLong(owner.getId());
+        dest.writeString(owner.getUsername());
+
+    }
 }

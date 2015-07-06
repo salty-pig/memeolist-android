@@ -40,74 +40,75 @@ public class Memeolist extends AppCompatActivity {
         save = (FloatingActionButton) findViewById(R.id.save);
         setSupportActionBar(toolbar);
 
-        TabViewAdapter viewAdapter = new TabViewAdapter(this, getSupportFragmentManager());
-        pager.setAdapter(viewAdapter);
 
-        pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                CoordinatorLayout coordinator = (CoordinatorLayout) findViewById(R.id.coordinator);
-                AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
-                CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appbar.getLayoutParams();
-                AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
-                behavior.onNestedFling(coordinator, appbar, null, 0, -1000, true);
-                if (position == 3) {
-                    showSave();
-                } else {
-                    showFab();
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        tabs.setupWithViewPager(pager);
-        fab.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        startActivity(new Intent(getApplicationContext(), CreateMemeActivity.class));
-                    }
+
+
+        if (!KeycloakHelper.isConnected()) {
+            KeycloakHelper.connect(this, new Callback() {
+                @Override
+                public void onSuccess(Object o) {
+
+                    TabViewAdapter viewAdapter = new TabViewAdapter(Memeolist.this, getSupportFragmentManager());
+                    pager.setAdapter(viewAdapter);
+
+                    pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                        @Override
+                        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                        }
+
+                        @Override
+                        public void onPageSelected(int position) {
+                            CoordinatorLayout coordinator = (CoordinatorLayout) findViewById(R.id.coordinator);
+                            AppBarLayout appbar = (AppBarLayout) findViewById(R.id.appbar);
+                            CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) appbar.getLayoutParams();
+                            AppBarLayout.Behavior behavior = (AppBarLayout.Behavior) params.getBehavior();
+                            behavior.onNestedFling(coordinator, appbar, null, 0, -1000, true);
+                            if (position == 3) {
+                                showSave();
+                            } else {
+                                showFab();
+                            }
+                        }
+
+                        @Override
+                        public void onPageScrollStateChanged(int state) {
+
+                        }
+                    });
+
+                    tabs.setupWithViewPager(pager);
+                    fab.setOnClickListener(
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    startActivity(new Intent(getApplicationContext(), CreateMemeActivity.class));
+                                }
+                            }
+                    );
+
+                    save.setOnClickListener(
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                    );
                 }
-        );
 
-        save.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Toast.makeText(getApplicationContext(), "Saving", Toast.LENGTH_LONG).show();
-                    }
+                @Override
+                public void onFailure(Exception e) {
+
                 }
-        );
-
-
-
-//        if (!KeycloakHelper.isConnected()) {
-//            KeycloakHelper.connect(this, new Callback() {
-//                @Override
-//                public void onSuccess(Object o) {
-//
-//                }
-//
-//                @Override
-//                public void onFailure(Exception e) {
-//
-//                }
-//            });
-//        }
+            });
+        }
     }
 
     public void showFab() {

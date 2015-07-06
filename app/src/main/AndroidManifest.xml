@@ -6,8 +6,10 @@
 
     <application
         android:label="@string/title_activity_memeolist"
+        android:icon="@mipmap/ic_launcher"
         android:theme="@style/AppTheme" >
-        <activity android:name=".Memeolist" >
+        <activity android:name=".Memeolist"
+            android:icon="@mipmap/ic_launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

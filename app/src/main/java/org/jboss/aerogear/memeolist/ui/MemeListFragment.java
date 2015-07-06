@@ -3,20 +3,25 @@ package org.jboss.aerogear.memeolist.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.util.Pair;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import org.jboss.aerogear.android.core.Callback;
+import org.jboss.aerogear.android.pipe.PipeManager;
 import org.jboss.aerogear.memeolist.MemeDetail;
 import org.jboss.aerogear.memeolist.R;
 import org.jboss.aerogear.memeolist.adapter.CardOnClickHandler;
 import org.jboss.aerogear.memeolist.adapter.MemeAdapter;
-import org.jboss.aerogear.memeolist.model.Meme;
+import org.jboss.aerogear.memeolist.content.vo.Post;
+
+import java.util.List;
+
 
 /**
  * Created by summers on 6/7/15.
@@ -39,6 +44,7 @@ public class MemeListFragment extends Fragment implements CardOnClickHandler {
         gridView.setLayoutManager(new LinearLayoutManager(getActivity()));
         memeAdapter = new MemeAdapter(getActivity());
         gridView.setAdapter(memeAdapter);
+
         return view;
 
     }
@@ -53,13 +59,29 @@ public class MemeListFragment extends Fragment implements CardOnClickHandler {
     public void onResume() {
         super.onResume();
         memeAdapter.setCardOnClickHandler(this);
+        loadPosts();
+    }
+
+    private void loadPosts() {
+        PipeManager.getPipe("kc-post", this.getActivity()).read(new Callback<List>() {
+            @Override
+            public void onSuccess(List list) {
+                memeAdapter.setPosts(list);
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+                Log.e("ERROR", e.getMessage(), e);
+                Toast.makeText(MemeListFragment.this.getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override
-    public void onCardClick(Meme meme, MemeAdapter.ViewHolder view) {
+    public void onCardClick(Post post, MemeAdapter.ViewHolder view) {
         Intent intent = new Intent(getActivity(), MemeDetail.class);
 
-        intent.putExtra(MemeDetail.EXTRA_MEME, meme);
+        intent.putExtra(MemeDetail.EXTRA_MEME, post);
 
         getActivity().startActivity(intent);
     }

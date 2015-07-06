@@ -1,36 +1,29 @@
 package org.jboss.aerogear.memeolist.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
-import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.squareup.okhttp.Interceptor;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
+import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 
-import org.jboss.aerogear.memeolist.MemeDetail;
+import org.jboss.aerogear.android.authorization.AuthorizationManager;
+import org.jboss.aerogear.android.pipe.module.ModuleFields;
 import org.jboss.aerogear.memeolist.R;
-import org.jboss.aerogear.memeolist.model.Meme;
-import org.jboss.aerogear.memeolist.utils.GsonUtils;
-import org.jboss.aerogear.memeolist.utils.MemeUtils;
+import org.jboss.aerogear.memeolist.content.vo.Post;
 import org.jboss.aerogear.memeolist.utils.UIUtils;
 
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.text.ParseException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +34,32 @@ import java.util.List;
 public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    private final List<Meme> memes;
+    private final List<Post> posts;
     private final Context appContext;
+    private final Picasso picasso;
     private CardOnClickHandler cardOnClickHandler;
 
     public MemeAdapter(Context context) {
         this.appContext = context.getApplicationContext();
-        memes = MemeUtils.getMemes(appContext);
+        posts = new ArrayList<>();
+        OkHttpClient picassoClient = new OkHttpClient();
+
+        picassoClient.interceptors().add(new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                ModuleFields fields = AuthorizationManager.getModule("KeyCloakAuthz").loadModule(null, null, null);
+                Pair<String, String> header = fields.getHeaders().get(0);
+                Request newRequest = chain.request().newBuilder()
+                        .addHeader(header.first, header.second)
+                        .build();
+                return chain.proceed(newRequest);
+            }
+        });
+
+        picasso = new Picasso.Builder(appContext).downloader(new OkHttpDownloader(picassoClient)).build();
+
+        picasso.setIndicatorsEnabled(true);
+        picasso.setLoggingEnabled(true);
     }
 
     @Override
@@ -59,26 +71,26 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
-        final Meme meme = memes.get(position);
+        final Post post = posts.get(position);
         holder.favoriteCount.setText("");
         holder.feedbackCount.setText("");
 
         try {
-            Picasso.with(appContext)
-                    .load(meme.getFileUrl().toString())
+            picasso
+                    .load(post.getFileUrl().toString())
                     .into(holder.memePhoto);
 
         } catch (Exception e) {
             throw new RuntimeException((e));
         }
-        holder.postedDate.setText(FORMAT.format(meme.getPosted()));
+        holder.postedDate.setText(FORMAT.format(post.getPosted()));
         UIUtils.setTextWithUnderline(holder.creator, "secondsun");
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (cardOnClickHandler != null) {
-                    cardOnClickHandler.onCardClick(meme, holder);
+                    cardOnClickHandler.onCardClick(post, holder);
                 }
             }
         });
@@ -87,7 +99,7 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return memes.size();
+        return posts.size();
     }
 
 
@@ -122,5 +134,12 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
     public void setCardOnClickHandler(CardOnClickHandler cardOnClickHandler) {
         this.cardOnClickHandler = cardOnClickHandler;
+    }
+
+
+    public void setPosts(List<Post> newPosts) {
+        posts.clear();
+        posts.addAll(newPosts);
+        this.notifyDataSetChanged();
     }
 }

@@ -6,8 +6,8 @@ import com.google.gson.Gson;
 
 import org.jboss.aerogear.memeolist.utils.GsonUtils;
 
-public final class PostContract {
-    public static final Uri URI = Uri.parse("content://org.jboss.aerogear.memeolist/Post");
+public final class MemeContract {
+    public static final Uri URI = Uri.parse("content://org.jboss.aerogear.memeolist/Meme");
 
     public static final String DATA = "DATA";
     public static final String ID = "ID";
