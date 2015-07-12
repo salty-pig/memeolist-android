@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by summers on 6/7/15.
  */
-public class MemeListFragment extends Fragment implements CardOnClickHandler {
+public class MemeListFragment extends Fragment implements CardOnClickHandler<Post> {
 
     private RecyclerView gridView;
     private View view;

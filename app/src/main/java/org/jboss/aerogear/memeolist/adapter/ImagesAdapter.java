@@ -15,6 +15,7 @@ import com.squareup.okhttp.Response;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.io.IOUtils;
 import org.jboss.aerogear.android.authorization.AuthorizationManager;
 import org.jboss.aerogear.android.pipe.module.ModuleFields;
 import org.jboss.aerogear.memeolist.R;
@@ -28,14 +29,22 @@ import java.util.List;
  * Created by summers on 6/29/15.
  */
 public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.Holder> {
-    private final List<Post> posts;
+    private final List<String> imageUrls;
     private final Context appContext;
-    private CardOnClickHandler cardOnClickHandler;
+    private CardOnClickHandler<String> cardOnClickHandler;
     private final Picasso picasso;
 
     public ImagesAdapter(Context applicationContext) {
         this.appContext = applicationContext;
-        posts = new ArrayList<>();
+        try {
+            imageUrls = new ArrayList<>(
+                    IOUtils.readLines(applicationContext.getResources().openRawResource(R.raw.meme))
+            );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
         OkHttpClient picassoClient = new OkHttpClient();
 
         picassoClient.interceptors().add(new Interceptor() {
@@ -67,17 +76,17 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        final Post post = posts.get(position);
+        final String imageUrl = imageUrls.get(position);
         try {
             picasso
-                    .load(post.getFileUrl())
+                    .load(imageUrl)
                     .into(holder.view);
 
             holder.view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (cardOnClickHandler != null) {
-                        cardOnClickHandler.onCardClick(post, null);
+                        cardOnClickHandler.onCardClick(imageUrl, null);
                     }
                 }
             });
@@ -89,7 +98,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.Holder> {
 
     @Override
     public int getItemCount() {
-        return posts.size();
+        return imageUrls.size();
     }
 
     public static class Holder extends RecyclerView.ViewHolder {
@@ -102,11 +111,11 @@ public class ImagesAdapter extends RecyclerView.Adapter<ImagesAdapter.Holder> {
         }
     }
 
-    public CardOnClickHandler getCardOnClickHandler() {
+    public CardOnClickHandler<String> getCardOnClickHandler() {
         return cardOnClickHandler;
     }
 
-    public void setCardOnClickHandler(CardOnClickHandler cardOnClickHandler) {
+    public void setCardOnClickHandler(CardOnClickHandler<String> cardOnClickHandler) {
         this.cardOnClickHandler = cardOnClickHandler;
     }
 }

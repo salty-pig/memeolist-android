@@ -20,7 +20,7 @@ import org.jboss.aerogear.memeolist.content.vo.Post;
 /**
  * Created by summers on 6/22/15.
  */
-public class FavoritesFragment extends Fragment implements CardOnClickHandler {
+public class FavoritesFragment extends Fragment implements CardOnClickHandler<Post> {
     private RecyclerView gridView;
     private View view;
     private MemeAdapter memeAdapter;

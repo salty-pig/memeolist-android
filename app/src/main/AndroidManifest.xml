@@ -5,11 +5,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:label="@string/title_activity_memeolist"
         android:icon="@mipmap/ic_launcher"
+        android:label="@string/title_activity_memeolist"
         android:theme="@style/AppTheme" >
-        <activity android:name=".Memeolist"
-            android:icon="@mipmap/ic_launcher">
+        <activity
+            android:name=".Memeolist"
+            android:icon="@mipmap/ic_launcher" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,6 +36,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.jboss.aerogear.memeolist.Memeolist" />
+        </activity>
+        <activity
+            android:name=".ImagePickerActivity"
+            android:label="@string/title_activity_meme_picker"
+            android:parentActivityName=".CreateMemeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.jboss.aerogear.memeolist.CreateMemeActivity" />
         </activity>
     </application>
 
