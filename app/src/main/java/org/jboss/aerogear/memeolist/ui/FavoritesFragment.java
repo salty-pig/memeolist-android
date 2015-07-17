@@ -44,13 +44,13 @@ public class FavoritesFragment extends Fragment implements CardOnClickHandler<Po
     @Override
     public void onPause() {
         super.onPause();
-        memeAdapter.setCardOnClickHandler(null);
+        memeAdapter.setFeedbackOnClickHandler(null);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        memeAdapter.setCardOnClickHandler(this);
+        memeAdapter.setFeedbackOnClickHandler(this);
     }
 
     @Override

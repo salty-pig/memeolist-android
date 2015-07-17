@@ -16,6 +16,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth2callback"
+                    android:scheme="http" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".MemeDetail"
@@ -44,6 +54,14 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="org.jboss.aerogear.memeolist.CreateMemeActivity" />
+        </activity>
+        <activity
+            android:name=".AccountDetail"
+            android:label="@string/title_activity_account_detail"
+            android:parentActivityName=".Memeolist" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="org.jboss.aerogear.memeolist.Memeolist" />
         </activity>
     </application>
 
