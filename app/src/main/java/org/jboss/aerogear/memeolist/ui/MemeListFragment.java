@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.jboss.aerogear.android.core.Callback;
 import org.jboss.aerogear.android.pipe.PipeManager;
+import org.jboss.aerogear.memeolist.AccountDetail;
 import org.jboss.aerogear.memeolist.MemeDetail;
 import org.jboss.aerogear.memeolist.R;
 import org.jboss.aerogear.memeolist.adapter.CardOnClickHandler;
@@ -46,7 +47,7 @@ public class MemeListFragment extends Fragment {
         }
     };
 
-    private final CardOnClickHandler<String> userOnClickHandler = new CardOnClickHandler<String>(){
+    private final CardOnClickHandler<String> authorOnClickHandler = new CardOnClickHandler<String>(){
         @Override
         public void onCardClick(String username, MemeAdapter.ViewHolder view) {
             onAuthorClicked(username, view);
@@ -76,6 +77,7 @@ public class MemeListFragment extends Fragment {
         super.onPause();
         memeAdapter.setFeedbackOnClickHandler(null);
         memeAdapter.setFavoriteOnClickHandler(null);
+        memeAdapter.setAuthorOnClickHandler(null);
     }
 
     @Override
@@ -83,6 +85,7 @@ public class MemeListFragment extends Fragment {
         super.onResume();
         memeAdapter.setFeedbackOnClickHandler(feedbackOnClickHandler);
         memeAdapter.setFavoriteOnClickHandler(favoriteOnClickHandler);
+        memeAdapter.setAuthorOnClickHandler(authorOnClickHandler);
         loadPosts();
     }
 

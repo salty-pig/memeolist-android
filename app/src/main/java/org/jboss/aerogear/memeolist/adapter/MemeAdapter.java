@@ -39,6 +39,7 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
     private final Picasso picasso;
     private CardOnClickHandler feedbackOnClickHandler;
     private CardOnClickHandler favoriteOnClickHandler;
+    private CardOnClickHandler authorOnClickHandler;
 
     public MemeAdapter(Context context) {
         this.appContext = context.getApplicationContext();
@@ -105,6 +106,15 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
             }
         });
 
+        holder.creator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (authorOnClickHandler!= null) {
+                    authorOnClickHandler.onCardClick(holder.creator.getText().toString(), holder);
+                }
+            }
+        });
+
     }
 
     @Override
@@ -156,6 +166,14 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
     public void setFavoriteOnClickHandler(CardOnClickHandler favoriteOnClickHandler) {
         this.favoriteOnClickHandler = favoriteOnClickHandler;
+    }
+
+    public CardOnClickHandler getAuthorOnClickHandler() {
+        return authorOnClickHandler;
+    }
+
+    public void setAuthorOnClickHandler(CardOnClickHandler authorOnClickHandler) {
+        this.authorOnClickHandler = authorOnClickHandler;
     }
 
     public void setPosts(List<Post> newPosts) {

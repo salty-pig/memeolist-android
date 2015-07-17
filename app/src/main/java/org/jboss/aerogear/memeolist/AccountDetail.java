@@ -1,18 +1,38 @@
 package org.jboss.aerogear.memeolist;
 
+import android.graphics.Rect;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import org.jboss.aerogear.memeolist.R;
 
-public class AccountDetail extends ActionBarActivity {
+public class AccountDetail extends AppCompatActivity {
+
+    public static final String EXTRA_USERNAME = "AccountDetail.USERNAME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_detail);
+        loadToolbar();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        View view = findViewById(R.id.layout);
+        Rect windowRect = new Rect();
+
+        view.getWindowVisibleDisplayFrame(windowRect);
+
+        view.setMinimumHeight(windowRect.bottom - windowRect.top);
     }
 
     @Override
@@ -36,4 +56,17 @@ public class AccountDetail extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+    private void loadToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+
+        CollapsingToolbarLayout collapsingToolbar =
+                (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
+        collapsingToolbar.setTitle("Memeolist");
+
+
+    }
+
+
 }

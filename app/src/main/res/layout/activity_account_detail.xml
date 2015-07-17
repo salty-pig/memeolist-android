@@ -4,22 +4,22 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
+    android:id="@+id/window"
     android:theme="@style/AppTheme">
 
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="256dp">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:theme="@style/ToolbarText"
-            app:popupTheme="@style/Theme.AppCompat.NoActionBar"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:popupTheme="@style/Theme.AppCompat.NoActionBar">
 
             <ImageView
                 android:id="@+id/account_photo"
@@ -36,28 +36,103 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:theme="@style/ToolbarText"
-                app:popupTheme="@style/Theme.AppCompat.NoActionBar"
-                app:layout_collapseMode="pin" />
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.AppCompat.NoActionBar" />
         </android.support.design.widget.CollapsingToolbarLayout>
 
     </android.support.design.widget.AppBarLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/comments"
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/rh_accent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+        <RelativeLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            >
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_margin="12dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/meme_sample" />
+
+            <TextView
+                android:id="@+id/screen_name"
+                style="@style/MemeCardHeaderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/avatar"
+                android:layout_toRightOf="@+id/avatar"
+                android:text="ScreenName" />
+
+            <TextView
+                android:id="@+id/email_address"
+                style="@style/LinkText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/screen_name"
+
+                android:layout_alignLeft="@+id/screen_name"
+                android:layout_alignRight="@+id/screen_name"
+                android:layout_alignStart="@+id/screen_name"
+                android:layout_below="@+id/screen_name"
+                android:text="Email@email.com" />
+
+            <TextView
+                android:id="@+id/bio_header"
+                style="@style/MemeCardHeaderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/avatar"
+                android:layout_alignStart="@+id/avatar"
+                android:layout_below="@+id/avatar"
+                android:text="Bio" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+
+
+                android:layout_height="1dp"
+                android:layout_alignBottom="@+id/bio_header"
+                android:layout_marginLeft="5sp"
+                android:layout_marginRight="5sp"
+                android:background="@color/rh_primary" />
+
+            <TextView
+                android:id="@+id/bio_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/view"
+                android:layout_alignLeft="@+id/view"
+                android:layout_alignRight="@+id/view"
+                android:layout_alignStart="@+id/view"
+                android:layout_below="@+id/view"
+                android:text="@string/ipsum"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:src="@drawable/ic_discuss"
+        android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        android:clickable="true"/>
+        android:clickable="true"
+        android:src="@drawable/ic_loyalty_white_24dp"
+        app:layout_anchor="@id/appbar"
+
+        app:layout_anchorGravity="bottom|right|end" />
 
 </android.support.design.widget.CoordinatorLayout>
