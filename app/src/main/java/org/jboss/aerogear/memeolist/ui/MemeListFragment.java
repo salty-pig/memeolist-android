@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.jboss.aerogear.android.core.Callback;
 import org.jboss.aerogear.android.pipe.PipeManager;
+import org.jboss.aerogear.memeolist.AccountDetail;
 import org.jboss.aerogear.memeolist.MemeDetail;
 import org.jboss.aerogear.memeolist.R;
 import org.jboss.aerogear.memeolist.adapter.CardOnClickHandler;
@@ -26,11 +27,33 @@ import java.util.List;
 /**
  * Created by summers on 6/7/15.
  */
-public class MemeListFragment extends Fragment implements CardOnClickHandler<Post> {
+public class MemeListFragment extends Fragment {
 
     private RecyclerView gridView;
     private View view;
     private MemeAdapter memeAdapter;
+
+    private final CardOnClickHandler<Post> favoriteOnClickHandler = new CardOnClickHandler<Post>(){
+        @Override
+        public void onCardClick(Post post, MemeAdapter.ViewHolder view) {
+            onFavoriteClicked(post, view);
+        }
+    };
+
+    private final CardOnClickHandler<Post> feedbackOnClickHandler = new CardOnClickHandler<Post>(){
+        @Override
+        public void onCardClick(Post post, MemeAdapter.ViewHolder view) {
+            onFeedbackClicked(post, view);
+        }
+    };
+
+    private final CardOnClickHandler<String> authorOnClickHandler = new CardOnClickHandler<String>(){
+        @Override
+        public void onCardClick(String username, MemeAdapter.ViewHolder view) {
+            onAuthorClicked(username, view);
+        }
+    };
+
 
     public static MemeListFragment newInstance() {
         return new MemeListFragment();
@@ -52,13 +75,17 @@ public class MemeListFragment extends Fragment implements CardOnClickHandler<Pos
     @Override
     public void onPause() {
         super.onPause();
-        memeAdapter.setCardOnClickHandler(null);
+        memeAdapter.setFeedbackOnClickHandler(null);
+        memeAdapter.setFavoriteOnClickHandler(null);
+        memeAdapter.setAuthorOnClickHandler(null);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        memeAdapter.setCardOnClickHandler(this);
+        memeAdapter.setFeedbackOnClickHandler(feedbackOnClickHandler);
+        memeAdapter.setFavoriteOnClickHandler(favoriteOnClickHandler);
+        memeAdapter.setAuthorOnClickHandler(authorOnClickHandler);
         loadPosts();
     }
 
@@ -77,12 +104,24 @@ public class MemeListFragment extends Fragment implements CardOnClickHandler<Pos
         });
     }
 
-    @Override
-    public void onCardClick(Post post, MemeAdapter.ViewHolder view) {
+    private void onFavoriteClicked(Post post, MemeAdapter.ViewHolder view) {
+        Toast.makeText(this.getActivity(), "Favorited", Toast.LENGTH_LONG).show();
+    }
+
+    private void onFeedbackClicked(Post post, MemeAdapter.ViewHolder view) {
         Intent intent = new Intent(getActivity(), MemeDetail.class);
 
         intent.putExtra(MemeDetail.EXTRA_MEME, post);
 
         getActivity().startActivity(intent);
     }
+
+    private void onAuthorClicked(String username, MemeAdapter.ViewHolder view) {
+        Intent intent = new Intent(getActivity(), AccountDetail.class);
+
+        intent.putExtra(AccountDetail.EXTRA_USERNAME, username);
+
+        getActivity().startActivity(intent);
+    }
+
 }

@@ -37,7 +37,9 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
     private final List<Post> posts;
     private final Context appContext;
     private final Picasso picasso;
-    private CardOnClickHandler cardOnClickHandler;
+    private CardOnClickHandler feedbackOnClickHandler;
+    private CardOnClickHandler favoriteOnClickHandler;
+    private CardOnClickHandler authorOnClickHandler;
 
     public MemeAdapter(Context context) {
         this.appContext = context.getApplicationContext();
@@ -86,11 +88,29 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
         holder.postedDate.setText(FORMAT.format(post.getPosted()));
         UIUtils.setTextWithUnderline(holder.creator, "secondsun");
 
-        holder.cardView.setOnClickListener(new View.OnClickListener() {
+        holder.feedbackIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (cardOnClickHandler != null) {
-                    cardOnClickHandler.onCardClick(post, holder);
+                if (feedbackOnClickHandler != null) {
+                    feedbackOnClickHandler.onCardClick(post, holder);
+                }
+            }
+        });
+
+        holder.favoriteIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (favoriteOnClickHandler!= null) {
+                    favoriteOnClickHandler.onCardClick(post, holder);
+                }
+            }
+        });
+
+        holder.creator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (authorOnClickHandler!= null) {
+                    authorOnClickHandler.onCardClick(holder.creator.getText().toString(), holder);
                 }
             }
         });
@@ -110,6 +130,8 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
         public final TextView creator;
         final TextView feedbackCount;
         final TextView favoriteCount;
+        public final ImageView feedbackIcon;
+        public final ImageView favoriteIcon;
         public final CardView cardView;
 
 
@@ -120,6 +142,8 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
             memePhoto = (ImageView) view.findViewById(R.id.meme_photo);
             feedbackCount = (TextView) view.findViewById(R.id.feedback_count);
             favoriteCount = (TextView) view.findViewById(R.id.favorite_count);
+            feedbackIcon = (ImageView) view.findViewById(R.id.feedback_icon);
+            favoriteIcon = (ImageView) view.findViewById(R.id.favorite_icon);
             creator = (TextView) view.findViewById(R.id.creator);
             cardView= (CardView) view.findViewById(R.id.card_view);
 
@@ -128,14 +152,29 @@ public class MemeAdapter extends RecyclerView.Adapter<MemeAdapter.ViewHolder> {
 
     }
 
-    public CardOnClickHandler getCardOnClickHandler() {
-        return cardOnClickHandler;
+    public CardOnClickHandler getFeedbackOnClickHandler() {
+        return feedbackOnClickHandler;
     }
 
-    public void setCardOnClickHandler(CardOnClickHandler cardOnClickHandler) {
-        this.cardOnClickHandler = cardOnClickHandler;
+    public void setFeedbackOnClickHandler(CardOnClickHandler feedbackOnClickHandler) {
+        this.feedbackOnClickHandler = feedbackOnClickHandler;
     }
 
+    public CardOnClickHandler getFavoriteOnClickHandler() {
+        return favoriteOnClickHandler;
+    }
+
+    public void setFavoriteOnClickHandler(CardOnClickHandler favoriteOnClickHandler) {
+        this.favoriteOnClickHandler = favoriteOnClickHandler;
+    }
+
+    public CardOnClickHandler getAuthorOnClickHandler() {
+        return authorOnClickHandler;
+    }
+
+    public void setAuthorOnClickHandler(CardOnClickHandler authorOnClickHandler) {
+        this.authorOnClickHandler = authorOnClickHandler;
+    }
 
     public void setPosts(List<Post> newPosts) {
         posts.clear();

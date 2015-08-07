@@ -54,7 +54,7 @@ import java.util.Date;
 public class KeycloakHelper {
 
 
-    private static final String SHOOT_SERVER_URL = "http://auth.com:9090";
+    private static final String SHOOT_SERVER_URL = "https://auth.sagaoftherealms.net/";
     private static final String AUTHZ_URL = SHOOT_SERVER_URL + "/auth";
     private static final String AUTHZ_ENDPOINT = "/realms/memeolist/protocol/openid-connect/auth";
     private static final String ACCESS_TOKEN_ENDPOINT = "/realms/memeolist/protocol/openid-connect/token";
@@ -169,7 +169,7 @@ public class KeycloakHelper {
     }
 
     public static boolean isConnected() {
-        return AuthorizationManager.getModule(MODULE_NAME).isAuthorized();
+        return false;//AuthorizationManager.getModule(MODULE_NAME).isAuthorized();
     }
 
 }
