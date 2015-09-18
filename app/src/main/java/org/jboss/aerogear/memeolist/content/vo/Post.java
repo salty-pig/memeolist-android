@@ -10,7 +10,6 @@ import android.os.Parcelable;
 
 import org.jboss.aerogear.android.core.RecordId;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**

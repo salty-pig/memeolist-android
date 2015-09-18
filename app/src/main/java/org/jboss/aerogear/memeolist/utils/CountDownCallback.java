@@ -3,8 +3,6 @@ package org.jboss.aerogear.memeolist.utils;
 import android.util.Log;
 
 import org.jboss.aerogear.android.core.Callback;
-import org.jboss.aerogear.android.store.sql.SQLStore;
-import org.jboss.aerogear.memeolist.content.vo.Post;
 
 import java.util.concurrent.CountDownLatch;
 

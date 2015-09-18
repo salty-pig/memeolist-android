@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.webkit.CookieManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-import org.apache.commons.io.IOUtils;
 import org.jboss.aerogear.android.core.Callback;
 import org.jboss.aerogear.android.pipe.PipeManager;
 import org.jboss.aerogear.memeolist.content.vo.Meme;
@@ -25,7 +23,6 @@ import org.jboss.aerogear.memeolist.content.vo.Meme;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 

@@ -1,16 +1,18 @@
 package org.jboss.aerogear.memeolist;
 
 import android.graphics.Rect;
-import android.support.design.widget.CollapsingToolbarLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import org.jboss.aerogear.memeolist.R;
+import org.jboss.aerogear.android.pipe.PipeManager;
+import org.jboss.aerogear.android.pipe.callback.AbstractActivityCallback;
+import org.jboss.aerogear.memeolist.content.vo.RedHatUser;
+import org.jboss.aerogear.memeolist.utils.KeycloakEnabledPicasso;
 
 public class AccountDetail extends AppCompatActivity {
 
@@ -21,7 +23,11 @@ public class AccountDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_detail);
         loadToolbar();
+        loadAccount();
+    }
 
+    private void loadAccount() {
+        PipeManager.getPipe("kc-user", this).read(new AccountHandlerCallback());
     }
 
     @Override
@@ -33,6 +39,7 @@ public class AccountDetail extends AppCompatActivity {
         view.getWindowVisibleDisplayFrame(windowRect);
 
         view.setMinimumHeight(windowRect.bottom - windowRect.top);
+        
     }
 
     @Override
@@ -69,4 +76,15 @@ public class AccountDetail extends AppCompatActivity {
     }
 
 
+    private class AccountHandlerCallback extends AbstractActivityCallback<RedHatUser> {
+        @Override
+        public void onSuccess(RedHatUser redHatUser) {
+
+        }
+
+        @Override
+        public void onFailure(Exception e) {
+
+        }
+    }
 }

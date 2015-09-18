@@ -43,6 +43,7 @@ import org.jboss.aerogear.android.pipe.rest.gson.GsonResponseParser;
 import org.jboss.aerogear.android.pipe.rest.multipart.MultipartRequestBuilder;
 import org.jboss.aerogear.memeolist.content.vo.Meme;
 import org.jboss.aerogear.memeolist.content.vo.Post;
+import org.jboss.aerogear.memeolist.content.vo.RedHatUser;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -54,7 +55,7 @@ import java.util.Date;
 public class KeycloakHelper {
 
 
-    private static final String SHOOT_SERVER_URL = "https://auth.sagaoftherealms.net/";
+    private static final String SHOOT_SERVER_URL = "https://auth.sagaoftherealms.net";
     private static final String AUTHZ_URL = SHOOT_SERVER_URL + "/auth";
     private static final String AUTHZ_ENDPOINT = "/realms/memeolist/protocol/openid-connect/auth";
     private static final String ACCESS_TOKEN_ENDPOINT = "/realms/memeolist/protocol/openid-connect/token";
@@ -86,6 +87,7 @@ public class KeycloakHelper {
                     .setAccountId(AUTHZ_ACCOOUNT_ID)
                     .setClientId(AUTHZ_CLIENT_ID)
                     .setRedirectURL(AUTHZ_REDIRECT_URL)
+                    .setWithIntent(true)
                     .asModule();
 
             PipeManager.config("kc-post", RestfulPipeConfiguration.class).module(AuthorizationManager.getModule(MODULE_NAME))
@@ -104,6 +106,24 @@ public class KeycloakHelper {
                     return src == null ? null : new JsonPrimitive(src.getTime());
                 }
             }).create())).forClass(Post.class);
+
+            PipeManager.config("kc-user", RestfulPipeConfiguration.class).module(AuthorizationManager.getModule(MODULE_NAME))
+                    .withUrl(new URL("http://10.0.2.2:8080" + "/memeolist/v1/api/user")).responseParser(new GsonResponseParser(new GsonBuilder().registerTypeAdapter(Date.class, new JsonDeserializer() {
+                public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+                    try {
+                        return FORMAT.parse(json.getAsString());
+                    } catch (ParseException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }).registerTypeAdapter(Date.class, new JsonSerializer<Date>() {
+                @Override
+                public JsonElement serialize(Date src, Type typeOfSrc, JsonSerializationContext
+                        context) {
+                    return src == null ? null : new JsonPrimitive(src.getTime());
+                }
+            }).create())).forClass(RedHatUser.class);
+
 
             PipeManager.config("kc-upload", RestfulPipeConfiguration.class).module(AuthorizationManager.getModule(MODULE_NAME))
                     .withUrl(new URL("http://10.0.2.2:8080" + "/memeolist/v1/api/meme"))

@@ -2,10 +2,6 @@ package org.jboss.aerogear.memeolist.content.contract;
 
 import android.net.Uri;
 
-import com.google.gson.Gson;
-
-import org.jboss.aerogear.memeolist.utils.GsonUtils;
-
 public final class MemeContract {
     public static final Uri URI = Uri.parse("content://org.jboss.aerogear.memeolist/Meme");
 

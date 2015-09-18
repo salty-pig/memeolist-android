@@ -10,7 +10,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.Window;
 import android.widget.Toast;
 
 import org.jboss.aerogear.android.core.Callback;
@@ -54,7 +53,7 @@ public class Memeolist extends AppCompatActivity {
                 @Override
                 public void onSuccess(Object o) {
 
-                    TabViewAdapter viewAdapter = new TabViewAdapter(Memeolist.this, getSupportFragmentManager());
+                    TabViewAdapter viewAdapter = new TabViewAdapter(Memeolist.this, getFragmentManager());
                     pager.setAdapter(viewAdapter);
 
                     pager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

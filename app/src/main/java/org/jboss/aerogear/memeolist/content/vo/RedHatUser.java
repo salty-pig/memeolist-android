@@ -21,7 +21,16 @@ public class RedHatUser implements Serializable{
     private String username;
     
     private String displayName;
-    
+
+    private String image;
+
+    private String photoUrl;
+
+    private String emailAddress;
+
+    private String bio;
+
+
     public Long getId() {
         return id;
     }
@@ -46,5 +55,35 @@ public class RedHatUser implements Serializable{
         this.displayName = displayName;
     }
 
-    
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
 }

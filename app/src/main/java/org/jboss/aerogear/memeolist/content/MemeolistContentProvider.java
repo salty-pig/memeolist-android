@@ -15,7 +15,6 @@ import org.jboss.aerogear.android.store.sql.SQLStore;
 import org.jboss.aerogear.memeolist.content.contract.MemeContract;
 import org.jboss.aerogear.memeolist.content.contract.RedHatUserContract;
 import org.jboss.aerogear.memeolist.content.vo.Meme;
-import org.jboss.aerogear.memeolist.content.vo.Post;
 import org.jboss.aerogear.memeolist.utils.CountDownCallback;
 import org.jboss.aerogear.memeolist.utils.GsonUtils;
 

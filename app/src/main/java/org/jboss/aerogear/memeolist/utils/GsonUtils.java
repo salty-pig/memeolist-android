@@ -1,7 +1,6 @@
 package org.jboss.aerogear.memeolist.utils;
 
 import android.content.ContentResolver;
-import android.database.Cursor;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

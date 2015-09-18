@@ -1,11 +1,8 @@
 package org.jboss.aerogear.memeolist.adapter;
 
-import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.view.View;
+import android.app.Fragment;
+import android.app.FragmentManager;
+
 
 import org.jboss.aerogear.memeolist.Memeolist;
 import org.jboss.aerogear.memeolist.R;
@@ -13,6 +10,7 @@ import org.jboss.aerogear.memeolist.ui.AccountFragment;
 import org.jboss.aerogear.memeolist.ui.FavoritesFragment;
 import org.jboss.aerogear.memeolist.ui.FollowingFragment;
 import org.jboss.aerogear.memeolist.ui.MemeListFragment;
+import org.jboss.aerogear.memeolist.utils.FragmentPagerAdapter;
 
 /**
  * Created by summers on 6/7/15.
