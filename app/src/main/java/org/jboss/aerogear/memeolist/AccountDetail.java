@@ -14,6 +14,8 @@ import org.jboss.aerogear.android.pipe.callback.AbstractActivityCallback;
 import org.jboss.aerogear.memeolist.content.vo.RedHatUser;
 import org.jboss.aerogear.memeolist.utils.KeycloakEnabledPicasso;
 
+import java.util.List;
+
 public class AccountDetail extends AppCompatActivity {
 
     public static final String EXTRA_USERNAME = "AccountDetail.USERNAME";
@@ -76,9 +78,9 @@ public class AccountDetail extends AppCompatActivity {
     }
 
 
-    private class AccountHandlerCallback extends AbstractActivityCallback<RedHatUser> {
+    private class AccountHandlerCallback extends AbstractActivityCallback<List<RedHatUser>> {
         @Override
-        public void onSuccess(RedHatUser redHatUser) {
+        public void onSuccess(List<RedHatUser> redHatUser) {
 
         }
 
